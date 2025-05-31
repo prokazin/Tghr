@@ -5,6 +5,10 @@ const counter = document.getElementById("counter");
 const wand = document.getElementById("wand");
 const upgradeBtn = document.getElementById("upgrade");
 
+const modal = document.getElementById("upgrade-modal");
+const openBtn = document.getElementById("open-upgrades");
+const closeBtn = document.getElementById("close-upgrades");
+
 function updateCounter() {
   counter.textContent = `Галлеоны: ${galleons}`;
   localStorage.setItem("galleons", galleons);
@@ -21,10 +25,32 @@ upgradeBtn.addEventListener("click", () => {
     galleons -= 100;
     multiplier++;
     updateCounter();
-    alert("Вы улучшили палочку! Теперь кликов больше.");
+    alert("Улучшено! Сила клика увеличена.");
   } else {
-    alert("Недостаточно галлеонов!");
+    alert("Недостаточно галлеонов.");
   }
+});
+
+// Открытие/закрытие модального окна
+openBtn.onclick = () => modal.style.display = "block";
+closeBtn.onclick = () => modal.style.display = "none";
+window.onclick = (event) => {
+  if (event.target == modal) modal.style.display = "none";
+};
+
+// Поддержка двойного тапа (зум на мобильных)
+let lastTap = 0;
+wand.addEventListener("touchend", (e) => {
+  const currentTime = new Date().getTime();
+  const tapLength = currentTime - lastTap;
+  if (tapLength < 500 && tapLength > 0) {
+    if (wand.style.transform === "scale(2)") {
+      wand.style.transform = "scale(1)";
+    } else {
+      wand.style.transform = "scale(2)";
+    }
+  }
+  lastTap = currentTime;
 });
 
 updateCounter();
