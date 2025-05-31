@@ -1,15 +1,55 @@
 /* Фон страницы */
 body {
   font-family: 'Harry P', sans-serif;
-  background-image: url('images/background.jpg.jpg'); /* Путь к фоновому изображению */
+  background: url("images/backgroud.jpg.jpg") no-repeat center center fixed;
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #f5f5f5;
+  color: white;
   text-align: center;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+}
+
+h1#title {
+  font-size: 3em;
+  margin-top: 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+#want-container, .wand-container {
+  margin: 30px 0;
+}
+
+#wand {
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#counter {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.buttons {
+  margin: 20px 0;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #d6b43b;
+  color: black;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffcc00;
 }
 
 /* Контейнер с затемнением */
