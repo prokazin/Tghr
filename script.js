@@ -1,12 +1,12 @@
-// Telegram WebApp API (если есть)
+// Инициализация Telegram WebApp
 const tg = window.Telegram ? window.Telegram.WebApp : null;
 if (tg) tg.expand();
 
-// Инициализация переменных прогресса
+// Прогресс игрока
 let galleons = 0;
 let multiplier = 1;
 
-// Элементы DOM
+// DOM-элементы
 const counter = document.getElementById("counter");
 const wand = document.getElementById("wand");
 const upgradeBtn = document.getElementById("upgrade");
@@ -20,59 +20,69 @@ const openLeaderboardBtn = document.getElementById("open-leaderboard");
 const closeLeaderboardBtn = document.getElementById("close-leaderboard");
 const leaderboardList = document.getElementById("leaderboard-list");
 
-// Предустановленные игроки в таблице лидеров
+// Демонстрационные данные лидеров
 const leaderboardData = [
   { name: "Гарри", score: 1200 },
   { name: "Гермиона", score: 900 },
   { name: "Рон", score: 700 },
 ];
 
-// Функция загрузки прогресса
-async function loadProgress() {
+// Загрузка прогресса игрока
+function loadProgress() {
   if (!tg) {
-    // fallback — локальное хранилище
+    // Если не в Telegram — используем localStorage
     galleons = parseInt(localStorage.getItem("galleons")) || 0;
     multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
     updateCounter();
     return;
   }
-  try {
-    const data = await tg.CloudStorage.getItem("clicker-data");
-    if (data) {
-      const parsed = JSON.parse(data);
-      galleons = parsed.galleons || 0;
-      multiplier = parsed.multiplier || 1;
+
+  tg.CloudStorage.getItem("clicker-data", (error, value) => {
+    if (error) {
+      console.warn("Ошибка загрузки:", error);
+    } else if (value) {
+      try {
+        const parsed = JSON.parse(value);
+        galleons = parsed.galleons || 0;
+        multiplier = parsed.multiplier || 1;
+      } catch (e) {
+        console.warn("Ошибка разбора:", e);
+      }
     }
-  } catch (e) {
-    console.warn("Ошибка загрузки:", e);
-  }
-  updateCounter();
+    updateCounter();
+  });
 }
 
-// Функция сохранения прогресса
+// Сохранение прогресса
 function saveProgress() {
+  const data = JSON.stringify({ galleons, multiplier });
+
   if (!tg) {
     localStorage.setItem("galleons", galleons);
     localStorage.setItem("multiplier", multiplier);
     return;
   }
-  const data = JSON.stringify({ galleons, multiplier });
-  tg.CloudStorage.setItem("clicker-data", data).catch(console.warn);
+
+  tg.CloudStorage.setItem("clicker-data", data, (error) => {
+    if (error) {
+      console.warn("Ошибка сохранения:", error);
+    }
+  });
 }
 
-// Обновление счетчика на экране
+// Обновление счётчика
 function updateCounter() {
   counter.textContent = `Галлеоны: ${galleons}`;
   saveProgress();
 }
 
-// Обработчик клика по палочке — прибавляем галлеоны
+// Клик по палочке
 wand.addEventListener("click", () => {
   galleons += multiplier;
   updateCounter();
 });
 
-// Покупка улучшения
+// Улучшение
 upgradeBtn.addEventListener("click", () => {
   if (galleons >= 100) {
     galleons -= 100;
@@ -84,11 +94,11 @@ upgradeBtn.addEventListener("click", () => {
   }
 });
 
-// Открытие/закрытие модального окна улучшений
+// Окно улучшений
 openBtn.onclick = () => (modal.style.display = "block");
 closeBtn.onclick = () => (modal.style.display = "none");
 
-// Открытие/закрытие модального окна таблицы лидеров
+// Окно лидеров
 openLeaderboardBtn.onclick = () => {
   renderLeaderboard();
   leaderboardModal.style.display = "block";
@@ -97,41 +107,34 @@ closeLeaderboardBtn.onclick = () => {
   leaderboardModal.style.display = "none";
 };
 
-// Закрытие модальных окон по клику вне окна
+// Закрытие по фону
 window.onclick = (event) => {
   if (event.target === modal) modal.style.display = "none";
   if (event.target === leaderboardModal) leaderboardModal.style.display = "none";
 };
 
-// Рендер таблицы лидеров
+// Рендер лидеров
 function renderLeaderboard() {
   leaderboardList.innerHTML = "";
-  // Добавляем игрока в общий список и сортируем
-  const playerEntry = { name: "Вы", score: galleons };
-  const combined = [...leaderboardData, playerEntry];
-  combined.sort((a, b) => b.score - a.score);
-
-  combined.slice(0, 10).forEach((entry, index) => {
+  const player = { name: "Вы", score: galleons };
+  const fullList = [...leaderboardData, player];
+  fullList.sort((a, b) => b.score - a.score);
+  fullList.slice(0, 10).forEach((entry, i) => {
     const li = document.createElement("li");
-    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} галлеонов`;
+    li.textContent = `${i + 1}. ${entry.name}: ${entry.score} галлеонов`;
     leaderboardList.appendChild(li);
   });
 }
 
-// Поддержка приближения палочки по двойному тапу (для мобильных)
+// Приближение по двойному тапу
 let lastTap = 0;
-wand.addEventListener("touchend", (e) => {
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTap;
-  if (tapLength < 500 && tapLength > 0) {
-    if (wand.style.transform === "scale(2)") {
-      wand.style.transform = "scale(1)";
-    } else {
-      wand.style.transform = "scale(2)";
-    }
+wand.addEventListener("touchend", () => {
+  const now = new Date().getTime();
+  if (now - lastTap < 500) {
+    wand.style.transform = wand.style.transform === "scale(2)" ? "scale(1)" : "scale(2)";
   }
-  lastTap = currentTime;
+  lastTap = now;
 });
 
-// Загрузка прогресса при старте
+// Загружаем прогресс при старте
 loadProgress();
