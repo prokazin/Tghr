@@ -1,16 +1,28 @@
+/* Фон страницы */
 body {
   font-family: 'Harry P', sans-serif;
-  background-color: #1a1a2e;
+  background-image: url('images/background.jpg.jpg'); /* Путь к фоновому изображению */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #f5f5f5;
   text-align: center;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
+/* Контейнер с затемнением */
 .container {
+  background-color: rgba(0, 0, 0, 0.6); /* затемнение блока */
   padding: 20px;
+  border-radius: 10px;
+  margin: 50px auto;
+  width: 90%;
+  max-width: 400px;
 }
 
+/* Изображение палочки */
 #wand {
   width: 150px;
   cursor: pointer;
@@ -22,10 +34,18 @@ body {
   transform: scale(0.95);
 }
 
+/* Кнопка апгрейда */
 button {
   background-color: #ffd700;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #ffd700;
+}
+
+#counter {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
