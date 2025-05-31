@@ -1,60 +1,18 @@
 /* Фон страницы */
 body {
   font-family: 'Harry P', sans-serif;
-  background: url("images/background.jpg") no-repeat center center fixed;
+  background: url("images/backgroud.jpg") no-repeat center center fixed;
   background-size: cover;
   color: white;
   text-align: center;
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
 
-h1#title {
-  font-size: 3em;
-  margin-top: 20px;
-  text-shadow: 2px 2px 4px #000;
-}
-
-#want-container, .wand-container {
-  margin: 30px 0;
-}
-
-#wand {
-  width: 200px;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-#counter {
-  font-size: 1.8em;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 3px #000;
-}
-
-.buttons {
-  margin: 20px 0;
-}
-
-button {
-  font-size: 1.2em;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  background-color: #d6b43b;
-  color: black;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background-color: #ffcc00;
-}
-
-/* Контейнер с затемнением */
+/* Контейнер во весь экран */
 .container {
-  background-color: rgba(0, 0, 0, 0.6); /* затемнение */
+  background-color: rgba(0, 0, 0, 0.6); /* полупрозрачный фон */
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -65,32 +23,34 @@ button:hover {
   padding: 20px;
 }
 
-/* Изображение палочки */
+/* Заголовок */
+h1#title {
+  font-size: 3em;
+  margin: 0 0 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+/* Счётчик */
+#counter {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px #000;
+}
+
+/* Палочка */
+.wand-container {
+  margin: 30px 0;
+}
+
 #wand {
   width: 150px;
+  height: auto;
   cursor: pointer;
-  margin: 20px 0;
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease;
 }
 
 #wand:active {
   transform: scale(0.95);
-}
-
-/* Кнопка апгрейда */
-button {
-  background-color: #ffd700;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #ffd700;
-}
-
-#counter {
-  font-size: 24px;
-  margin-bottom: 20px;
 }
 
 /* Кнопки */
@@ -98,9 +58,28 @@ button {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-/* Модальное окно */
+button {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffd700;
+  color: black;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 0 10px #ffd700;
+}
+
+button:hover {
+  background-color: #ffcc00;
+}
+
+/* Модальные окна */
 .modal {
   display: none;
   position: fixed;
@@ -133,12 +112,7 @@ button {
   cursor: pointer;
 }
 
-/* Поддержка масштабирования при двойном тапе */
-html, body {
-  touch-action: manipulation;
-}
-
-/* Таблица лидеров - оформление списка */
+/* Таблица лидеров */
 #leaderboard-list {
   list-style: none;
   padding: 0;
@@ -149,4 +123,9 @@ html, body {
   padding: 5px;
   border-bottom: 1px solid #ffd700;
   text-align: left;
+}
+
+/* Поддержка масштабирования при двойном тапе */
+html, body {
+  touch-action: manipulation;
 }
