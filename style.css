@@ -54,12 +54,12 @@ button:hover {
 
 /* Контейнер с затемнением */
 .container {
-  background-color: rgba(0, 0, 0, 0.6); /* затемнение блока */
+  background-color: rgba(0, 0, 0, 0.6); /* прозрачность! */
   padding: 20px;
   border-radius: 10px;
   margin: 50px auto;
   width: 90%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 /* Изображение палочки */
