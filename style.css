@@ -94,3 +94,16 @@ button {
 html, body {
   touch-action: manipulation;
 }
+
+/* Таблица лидеров - оформление списка */
+#leaderboard-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+#leaderboard-list li {
+  padding: 5px;
+  border-bottom: 1px solid #ffd700;
+  text-align: left;
+}
