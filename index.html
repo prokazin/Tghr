@@ -8,17 +8,20 @@
 </head>
 <body>
   <div class="container">
-    <h1>🪄 Волшебный Кликер</h1>
+    <h1 id="title">🏰 ХОГВАРТС</h1>
     <div id="counter">Галлеоны: 0</div>
-    <img id="wand" src="images/wand.png.png" alt="Палочка" />
     
+    <div class="wand-container">
+      <img id="wand" src="images/wand.png" alt="Палочка" />
+    </div>
+
     <div class="buttons">
-      <button id="open-leaderboard">Таблица лидеров</button>
-      <button id="open-upgrades">Улучшения</button>
+      <button id="open-upgrades">🧪 Улучшения</button>
+      <button id="open-leaderboard">🏆 Лидеры</button>
     </div>
   </div>
 
-  <!-- Модальное окно -->
+  <!-- Модалка улучшений -->
   <div id="upgrade-modal" class="modal">
     <div class="modal-content">
       <span id="close-upgrades" class="close">&times;</span>
@@ -28,15 +31,15 @@
     </div>
   </div>
 
-  <!-- Модальное окно таблицы лидеров -->
-<div id="leaderboard-modal" class="modal">
-  <div class="modal-content">
-    <span id="close-leaderboard" class="close">&times;</span>
-    <h2>🏆 Таблица лидеров</h2>
-    <ul id="leaderboard-list"></ul>
+  <!-- Модалка лидеров -->
+  <div id="leaderboard-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-leaderboard" class="close">&times;</span>
+      <h2>🏆 Таблица лидеров</h2>
+      <ul id="leaderboard-list"></ul>
+    </div>
   </div>
-</div>
-  
+
   <script src="script.js"></script>
 </body>
 </html>
