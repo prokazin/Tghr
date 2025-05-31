@@ -1,5 +1,8 @@
-let galleons = parseInt(localStorage.getItem("galleons")) || 0;
-let multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
+const tg = window.Telegram.WebApp;
+tg.expand(); // разворачивает WebApp
+
+let galleons = 0;
+let multiplier = 1;
 
 const counter = document.getElementById("counter");
 const wand = document.getElementById("wand");
@@ -9,10 +12,28 @@ const modal = document.getElementById("upgrade-modal");
 const openBtn = document.getElementById("open-upgrades");
 const closeBtn = document.getElementById("close-upgrades");
 
+async function loadProgress() {
+  try {
+    const data = await tg.CloudStorage.getItem('clicker-data');
+    if (data) {
+      const parsed = JSON.parse(data);
+      galleons = parsed.galleons || 0;
+      multiplier = parsed.multiplier || 1;
+    }
+  } catch (e) {
+    console.warn('Ошибка загрузки:', e);
+  }
+  updateCounter();
+}
+
+function saveProgress() {
+  const data = JSON.stringify({ galleons, multiplier });
+  tg.CloudStorage.setItem('clicker-data', data).catch(console.warn);
+}
+
 function updateCounter() {
   counter.textContent = `Галлеоны: ${galleons}`;
-  localStorage.setItem("galleons", galleons);
-  localStorage.setItem("multiplier", multiplier);
+  saveProgress();
 }
 
 wand.addEventListener("click", () => {
@@ -53,4 +74,5 @@ wand.addEventListener("touchend", (e) => {
   lastTap = currentTime;
 });
 
-updateCounter();
+// Загружаем прогресс при старте
+loadProgress();
