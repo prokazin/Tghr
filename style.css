@@ -40,8 +40,8 @@ h1#title {
 
 /* Счётчик — увеличенный и с отступом снизу */
 #counter {
-  font-size: 4em;
-  margin-bottom: 20px;
+  font-size: 3.5em;
+  margin-bottom: 15px;
   text-shadow: 1px 1px 3px #000;
   width: 100%;
   text-align: center;
@@ -49,7 +49,7 @@ h1#title {
 
 /* Палочка — центрированная, увеличена */
 #wand {
-  width: 480px;
+  width: 420px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -78,8 +78,8 @@ h1#title {
 }
 
 button {
-  font-size: 2.5em;
-  padding: 20px 70px;
+  font-size: 2em;
+  padding: 10px 55px;
   border: none;
   border-radius: 12px;
   background-color: #ffd700;
