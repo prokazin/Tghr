@@ -27,6 +27,17 @@ const leaderboardData = [
   { name: "Рон", score: 700 },
 ];
 
+// Функция для показа toast-сообщения
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
 // Загрузка прогресса игрока
 function loadProgress() {
   if (!tg) {
@@ -80,7 +91,10 @@ function updateCounter() {
 wand.addEventListener("click", () => {
   galleons += multiplier;
   updateCounter();
- wand.addEventListener("mousedown", () => {
+});
+
+// Эффект нажатия на палочку
+wand.addEventListener("mousedown", () => {
   wand.classList.add("pressed");
 });
 wand.addEventListener("mouseup", () => {
@@ -94,7 +108,6 @@ wand.addEventListener("touchstart", () => {
 });
 wand.addEventListener("touchend", () => {
   wand.classList.remove("pressed");
-}); 
 });
 
 // Улучшение
@@ -103,9 +116,9 @@ upgradeBtn.addEventListener("click", () => {
     galleons -= 100;
     multiplier++;
     updateCounter();
-    alert("Улучшено! Сила клика увеличена.");
+    showToast("Улучшено! Сила клика увеличена.");
   } else {
-    alert("Недостаточно галлеонов.");
+    showToast("Недостаточно галлеонов.");
   }
 });
 
