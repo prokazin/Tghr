@@ -1,6 +1,5 @@
 /* Поддержка масштабирования при двойном тапе */
 html, body {
-  touch-action: manipulation;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -33,63 +32,61 @@ h1#title {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Чтобы распределить содержимое сверху и снизу */
+  justify-content: center;
   align-items: center;
-  padding: 80px 20px 40px 20px; /* сверху чтобы не перекрывал заголовок */
+  padding-top: 80px; /* чтобы не перекрыть заголовок */
   box-sizing: border-box;
-  position: relative;
 }
 
-/* Счётчик — по центру и чуть выше палочки */
+/* Счётчик — увеличенный и с отступом снизу */
 #counter {
-  font-size: 9vw;
-  margin: 0 0 15px 0; /* Отступ снизу до палочки */
+  font-size: 4em;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px #000;
   width: 100%;
   text-align: center;
-  text-shadow: 2px 2px 4px #000;
-  flex-shrink: 0;
 }
 
-/* Палочка — центр и размер */
+/* Палочка — центрированная, увеличена */
 #wand {
-  display: block;
-  width: 40vw;
-  max-width: 300px;
+  width: 320px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin: 0 auto 30px auto; /* снизу отступ */
-  z-index: 5;
-  flex-shrink: 0;
+  margin: 10px auto 40px; /* сверху 10px, снизу 40px, по бокам auto — центрирование */
+  display: block;
 }
 
 #wand:active {
   transform: scale(0.95);
 }
 
-/* Кнопки - внизу, большие */
+/* Кнопки — внизу, большие */
 .buttons {
   display: flex;
   justify-content: center;
   gap: 20px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  margin-top: 20px;
   width: 100%;
-  max-width: 600px;
-  margin-bottom: 10px;
-  flex-shrink: 0;
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 20;
 }
 
 button {
-  font-size: 1.8em;
-  padding: 15px 30px;
+  font-size: 2em;
+  padding: 15px 40px;
   border: none;
-  border-radius: 15px;
+  border-radius: 12px;
   background-color: #ffd700;
   color: black;
   cursor: pointer;
   transition: background 0.3s ease;
   box-shadow: 0 0 15px #ffd700;
-  flex-grow: 1;
 }
 
 button:hover {
@@ -140,48 +137,4 @@ button:hover {
   padding: 5px;
   border-bottom: 1px solid #ffd700;
   text-align: left;
-}
-
-/* Адаптивность */
-@media (max-width: 600px) {
-  h1#title {
-    font-size: 3em;
-  }
-  
-  #counter {
-    font-size: 12vw;
-  }
-  
-  #wand {
-    width: 60vw;
-    max-width: 250px;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    font-size: 1.4em;
-    padding: 12px 20px;
-    border-radius: 12px;
-  }
-
-  .buttons {
-    gap: 15px;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 350px) {
-  #counter {
-    font-size: 14vw;
-  }
-  
-  #wand {
-    width: 80vw;
-    max-width: 220px;
-  }
-  
-  button {
-    font-size: 1.1em;
-    padding: 10px 15px;
-  }
 }
