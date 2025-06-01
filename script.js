@@ -80,6 +80,21 @@ function updateCounter() {
 wand.addEventListener("click", () => {
   galleons += multiplier;
   updateCounter();
+ wand.addEventListener("mousedown", () => {
+  wand.classList.add("pressed");
+});
+wand.addEventListener("mouseup", () => {
+  wand.classList.remove("pressed");
+});
+wand.addEventListener("mouseleave", () => {
+  wand.classList.remove("pressed");
+});
+wand.addEventListener("touchstart", () => {
+  wand.classList.add("pressed");
+});
+wand.addEventListener("touchend", () => {
+  wand.classList.remove("pressed");
+}); 
 });
 
 // Улучшение
