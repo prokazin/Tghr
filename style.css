@@ -1,42 +1,51 @@
-/* Фон страницы */
-body {
+/* Поддержка масштабирования при двойном тапе */
+html, body {
+  touch-action: manipulation;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
   font-family: 'Harry P', sans-serif;
   background: url("images/backgroud.jpg") no-repeat center center fixed;
   background-size: cover;
   color: white;
   text-align: center;
+  box-sizing: border-box;
+}
+
+/* Заголовок "ХОГВАРТС" */
+h1#title {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  font-size: 4em;
   margin: 0;
-  padding: 0;
-  height: 100vh;
+  padding: 10px 0;
+  text-shadow: 3px 3px 6px #000;
+  z-index: 10;
 }
 
 /* Контейнер во весь экран */
 .container {
-  background-color: rgba(0, 0, 0, 0.6); /* полупрозрачный фон */
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 80px; /* чтобы не перекрыть заголовок */
   box-sizing: border-box;
-  
-}
-/* Заголовок ХОГВАРТС */
-h1#title {
-  font-size: 4em;
-  margin: 30px 0 10px;
-  text-shadow: 3px 3px 6px #000;
 }
 
 /* Счётчик */
 #counter {
-  font-size: 1.8em;
-  margin-bottom: 20px;
+  font-size: 2em;
+  margin-bottom: 30px;
   text-shadow: 1px 1px 3px #000;
 }
 
-/* Палочка — увеличим */
+/* Палочка — увеличена */
 #wand {
   width: 300px;
   height: auto;
@@ -60,7 +69,7 @@ h1#title {
 
 button {
   font-size: 1.2em;
-  padding: 10px 20px;
+  padding: 12px 24px;
   margin: 10px;
   border: none;
   border-radius: 10px;
@@ -119,9 +128,4 @@ button:hover {
   padding: 5px;
   border-bottom: 1px solid #ffd700;
   text-align: left;
-}
-
-/* Поддержка масштабирования при двойном тапе */
-html, body {
-  touch-action: manipulation;
 }
