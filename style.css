@@ -67,6 +67,20 @@ h1#title {
   transform: scale(0.9);
 }
 
+@keyframes wandGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px 3px #a67c00, 0 0 20px 5px #ffd700;
+  }
+  50% {
+    box-shadow: 0 0 20px 6px #ffd700, 0 0 30px 10px #ffea00;
+  }
+}
+
+#wand.pressed {
+  animation: wandGlow 0.8s ease-in-out infinite;
+  cursor: pointer;
+}
+
 /* Кнопки — внизу, большие */
 .buttons {
   display: flex;
