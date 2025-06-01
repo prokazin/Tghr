@@ -195,7 +195,7 @@ button:hover {
 #sparkles-container {
   position: absolute;
   top: 50%;
-  left: 10px; /* Подкорректируй */
+  rigth: 10px; /* Подкорректируй */
   width: 30px;
   height: 30px;
   pointer-events: none;
