@@ -81,6 +81,53 @@ h1#title {
   cursor: pointer;
 }
 
+/* Общий стиль палочки */
+#wand {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+  /* Можно добавить исходный стиль палочки (размер, позиция) */
+}
+
+/* Эффект при нажатии */
+#wand.pressed {
+  filter: brightness(1.3) drop-shadow(0 0 10px #fff);
+}
+
+/* Уровень 5 — легкое свечение */
+.wand-level-5 {
+  filter: drop-shadow(0 0 8px #a29bfe);
+}
+
+/* Уровень 10 — яркое свечение и анимация пульсации */
+.wand-level-10 {
+  filter: drop-shadow(0 0 15px #6c5ce7);
+  animation: wandGlow 2s infinite alternate;
+}
+
+@keyframes wandGlow {
+  from {
+    filter: drop-shadow(0 0 10px #6c5ce7);
+  }
+  to {
+    filter: drop-shadow(0 0 20px #6c5ce7);
+  }
+}
+
+/* Уровень 20 — сильное сияние и более быстрая анимация */
+.wand-level-20 {
+  filter: drop-shadow(0 0 20px #00cec9);
+  animation: wandGlowStrong 1.5s infinite alternate;
+}
+
+@keyframes wandGlowStrong {
+  from {
+    filter: drop-shadow(0 0 15px #00cec9);
+  }
+  to {
+    filter: drop-shadow(0 0 30px #00cec9);
+  }
+}
+
 /* Кнопки — внизу, большие */
 .buttons {
   display: flex;
