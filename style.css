@@ -1,240 +1,185 @@
-/* Поддержка масштабирования при двойном тапе */
-html, body {
+/* Базовые стили */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #4a90e2, #50e3c2);
   margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  font-family: 'Cinzel', serif;
-  /* остальные стили */
-  background: url("images/background.jpg") no-repeat center center fixed;
-  background-size: cover;
-  color: white;
+  padding: 20px;
+  color: #fff;
   text-align: center;
-  box-sizing: border-box;
-  overflow-x: hidden;
 }
 
-/* Заголовок "ХОГВАРТС" */
-h1#title {
-  position: absolute;
-  top: 8px;
-  width: 100%;
-  font-size: 2.5em;
-  margin: 0;
-  padding: 10px 0;
-  text-shadow: 3px 3px 6px #000;
-  z-index: 10;
+#wrapper {
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-/* Контейнер во весь экран */
-.container {
-  background-color: rgba(0, 0, 0, 0.6);
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 80px; /* чтобы не перекрыть заголовок */
-  box-sizing: border-box;
-}
-
-/* Счётчик — увеличенный и с отступом снизу */
+/* Счётчик галлеонов */
 #counter {
-  font-size: 2em;
-  margin-bottom: 7px;
-  text-shadow: 1px 1px 3px #000;
-  width: 100%;
-  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
 
-/* Палочка — центрированная, увеличена */
+/* Палочка */
 #wand {
   width: 320px;
-  height: auto;
   cursor: pointer;
-  transition: transform 0.2s ease, filter 0.3s ease;
-  margin: 10px auto 40px;
-  display: block;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+  user-select: none;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3));
 }
 
-/* Эффект при нажатии */
+/* Эффект нажатия палочки */
 #wand.pressed {
-  transform: scale(0.9);
-  animation: wandGlow 0.8s ease-in-out infinite;
-  filter: brightness(1.3) drop-shadow(0 0 10px #fff);
+  transform: scale(0.95) rotate(-5deg);
+  box-shadow: 0 0 15px 5px #ffd700;
+  filter: drop-shadow(0 0 12px #ffd700);
 }
 
-/* Анимация свечения */
-@keyframes wandGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px 3px #a67c00) drop-shadow(0 0 20px 5px #ffd700);
-  }
-  50% {
-    filter: drop-shadow(0 0 20px 6px #ffd700) drop-shadow(0 0 30px 10px #ffea00);
-  }
-}
-
-/* Уровни палочки с разным свечением */
-
-/* Уровень 1 — без свечения */
+/* Классы уровней палочки */
 .wand-level-1 {
-  filter: none;
+  filter: drop-shadow(0 0 2px #ccc);
 }
-
-/* Уровень 2 — слабое желтое свечение */
 .wand-level-2 {
-  filter: drop-shadow(0 0 5px #ffd700);
+  filter: drop-shadow(0 0 4px #aaf);
 }
-
-/* Уровень 3 — сильнее, с легким пульсирующим эффектом */
 .wand-level-3 {
-  filter: drop-shadow(0 0 8px #ffd700);
-  animation: wandGlowLevel3 2s infinite alternate;
+  filter: drop-shadow(0 0 6px #88f);
 }
-
-@keyframes wandGlowLevel3 {
-  from {
-    filter: drop-shadow(0 0 5px #ffd700);
-  }
-  to {
-    filter: drop-shadow(0 0 12px #ffd700);
-  }
-}
-
-/* Уровень 4 — яркое золотое свечение */
 .wand-level-4 {
-  filter: drop-shadow(0 0 10px #ffec00);
-  animation: wandGlowLevel4 1.5s infinite alternate;
+  filter: drop-shadow(0 0 8px #66f);
 }
-
-@keyframes wandGlowLevel4 {
-  from {
-    filter: drop-shadow(0 0 8px #ffec00);
-  }
-  to {
-    filter: drop-shadow(0 0 15px #ffec00);
-  }
-}
-
-/* Уровень 5 — очень яркое пурпурное свечение */
 .wand-level-5 {
-  filter: drop-shadow(0 0 15px #a29bfe);
-  animation: wandGlowLevel5 1.2s infinite alternate;
+  filter: drop-shadow(0 0 10px #44f);
+}
+.wand-level-10 {
+  filter: drop-shadow(0 0 15px #22aaff);
+}
+.wand-level-20 {
+  filter: drop-shadow(0 0 25px #00ffff);
 }
 
-@keyframes wandGlowLevel5 {
-  from {
-    filter: drop-shadow(0 0 10px #a29bfe);
-  }
-  to {
-    filter: drop-shadow(0 0 20px #a29bfe);
-  }
-}
-
-/* Кнопки — внизу, большие */
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  width: 100%;
-  position: fixed;
-  bottom: 30px;
-  left: 0;
-  padding: 0 20px;
-  box-sizing: border-box;
-  z-index: 20;
-}
-
+/* Кнопки */
 button {
   font-size: 1.3em;
-  padding: 3px 15px;
+  padding: 10px 30px;
+  margin: 5px;
   border: none;
   border-radius: 12px;
-  background-color: #ffd700;
-  color: black;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
   cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 0 15px #ffd700;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background 0.3s ease, transform 0.1s ease;
+  user-select: none;
 }
 
 button:hover {
-  background-color: #ffcc00;
+  background: linear-gradient(45deg, #2575fc, #6a11cb);
 }
 
-* {
-  touch-action: manipulation;
+button:active {
+  transform: scale(0.95);
 }
 
 /* Модальные окна */
 .modal {
   display: none;
   position: fixed;
-  z-index: 100;
+  z-index: 10;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.5);
+  padding-top: 80px;
+  box-sizing: border-box;
 }
 
 .modal-content {
   background-color: #222;
-  margin: 15% auto;
+  margin: auto;
   padding: 20px;
-  border: 1px solid #ffd700;
-  width: 80%;
-  max-width: 400px;
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
+  border-radius: 15px;
+  max-width: 300px;
+  color: #eee;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  user-select: text;
 }
 
 .close {
-  color: #ffd700;
+  color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  user-select: none;
 }
 
-/* Таблица лидеров */
+.close:hover,
+.close:focus {
+  color: #fff;
+}
+
+/* Список лидеров */
 #leaderboard-list {
   list-style: none;
-  padding: 0;
-  margin-top: 15px;
-}
-
-#leaderboard-list li {
-  padding: 5px;
-  border-bottom: 1px solid #ffd700;
+  padding-left: 0;
+  font-size: 1.2em;
   text-align: left;
 }
 
-/* Всплывающее уведомление (toast) */
-.toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #ffd700;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 1.2em;
-  box-shadow: 0 0 10px #ffd700;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1000;
+#leaderboard-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid #444;
 }
 
-.toast.show {
+/* Всплывающее уведомление (toast) */
+#toast {
+  visibility: hidden;
+  min-width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  z-index: 20;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 1.1em;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s;
+  user-select: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+}
+
+#toast.show {
   visibility: visible;
   opacity: 1;
-  pointer-events: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  #wand {
+    width: 180px !important;
+  }
+
+  button {
+    font-size: 1.6em !important;
+    padding: 15px 40px !important;
+  }
+}
+
+/* Дополнительно: убираем выделение текста на элементах при касании */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
 }
