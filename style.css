@@ -20,14 +20,13 @@ body {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 20px;
+  
 }
-
-/* Заголовок */
+/* Заголовок ХОГВАРТС */
 h1#title {
-  font-size: 3em;
-  margin: 0 0 20px;
-  text-shadow: 2px 2px 4px #000;
+  font-size: 4em;
+  margin: 30px 0 10px;
+  text-shadow: 3px 3px 6px #000;
 }
 
 /* Счётчик */
@@ -37,16 +36,13 @@ h1#title {
   text-shadow: 1px 1px 3px #000;
 }
 
-/* Палочка */
-.wand-container {
-  margin: 30px 0;
-}
-
+/* Палочка — увеличим */
 #wand {
-  width: 150px;
+  width: 300px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
+  margin: 30px 0;
 }
 
 #wand:active {
