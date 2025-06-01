@@ -126,15 +126,5 @@ function renderLeaderboard() {
   });
 }
 
-// Приближение по двойному тапу
-let lastTap = 0;
-wand.addEventListener("touchend", () => {
-  const now = new Date().getTime();
-  if (now - lastTap < 500) {
-    wand.style.transform = wand.style.transform === "scale(2)" ? "scale(1)" : "scale(2)";
-  }
-  lastTap = now;
-});
-
 // Загружаем прогресс при старте
 loadProgress();
