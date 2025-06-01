@@ -40,21 +40,25 @@ h1#title {
   position: relative;
 }
 
-/* Счётчик галлеонов — увеличен и поднят выше */
+/* Счётчик галлеонов — крупный, чуть выше палочки */
 #counter {
-  font-size: 7vw; /* увеличенный размер */
+  font-size: 7vw; /* крупный размер */
   margin-bottom: 10px;
   text-shadow: 2px 2px 4px #000;
+  z-index: 5;
 }
 
-/* Палочка — увеличена */
+/* Палочка — по центру и чуть ниже счётчика */
 #wand {
   width: 40vw;
   max-width: 300px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin: 20px 0;
+  margin-top: 15px; /* отступ сверху */
+  margin-bottom: 20px;
+  align-self: center; /* центр по горизонтали */
+  z-index: 5;
 }
 
 #wand:active {
@@ -72,6 +76,7 @@ h1#title {
   width: 100%;
   padding: 0 5vw;
   box-sizing: border-box;
+  z-index: 10;
 }
 
 button {
