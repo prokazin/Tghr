@@ -34,39 +34,34 @@ h1#title {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: center;  /* центр по горизонтали */
   padding-top: 100px; /* чтобы не перекрыть заголовок */
   box-sizing: border-box;
   position: relative;
 }
 
-/* Счётчик галлеонов — крупный и выше палочки */
 #counter {
-  font-size: 9vw; /* больше, чем было */
-  margin-bottom: 5px; /* чуть меньше отступ */
+  font-size: 9vw;
+  margin-bottom: 10px;  /* чуть больше отступ */
   text-shadow: 2px 2px 4px #000;
-  z-index: 5;
   width: 100%;
   text-align: center;
 }
 
-/* Палочка — по центру, сразу под счётчиком */
 #wand {
+  display: block; /* сделать блочным элементом */
   width: 40vw;
   max-width: 300px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-top: 0; /* убираем верхний отступ */
-  margin-bottom: 30px;
-  align-self: center; /* гарантируем центр по горизонтали */
+  margin: 0 auto 30px auto; /* сверху 0, снизу 30px, по горизонтали auto для центра */
   z-index: 5;
 }
 
 #wand:active {
   transform: scale(0.95);
 }
-
 /* Кнопки "Улучшения" и "Лидеры" — увеличены и подняты выше */
 .buttons {
   position: absolute;
