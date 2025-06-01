@@ -40,37 +40,40 @@ h1#title {
 
 /* Счётчик */
 #counter {
-  font-size: 2.8em;
-  margin-bottom: 40px;
-  text-shadow: 2px 2px 4px #000;
+  font-size: 2em;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px #000;
 }
 
 /* Палочка — увеличена */
 #wand {
-  width: 400px;
+  width: 320px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin: 40px 0;
+  margin: 30px 0;
 }
 
 #wand:active {
   transform: scale(0.95);
 }
 
-/* Кнопки */
+/* Кнопки "Улучшения" и "Лидеры" — внизу и увеличены */
 .buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  z-index: 20;
 }
 
-button {
-  font-size: 1.6em;
-  padding: 16px 32px;
-  margin: 12px;
+.buttons button {
+  font-size: 1.4em;
+  padding: 14px 28px;
   border: none;
   border-radius: 12px;
   background-color: #ffd700;
@@ -80,7 +83,7 @@ button {
   box-shadow: 0 0 12px #ffd700;
 }
 
-button:hover {
+.buttons button:hover {
   background-color: #ffcc00;
 }
 
