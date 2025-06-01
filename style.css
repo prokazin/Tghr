@@ -194,12 +194,13 @@ button:hover {
 
 #sparkles-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Чтобы клики проходили сквозь искры */
-  overflow: visible; /* Если искры выходят за границы */
+  top: 50%;      /* Вертикально по центру */
+  right: 10px;   /* Отступ слева или справа — подкорректируй по необходимости */
+  width: 30px;   /* Размер области с искрами */
+  height: 30px;
+  pointer-events: none;
+  transform: translateY(-50%); /* Сместить вертикально, чтобы центр был по высоте */
+  overflow: visible;
 }
 
 .sparkle {
