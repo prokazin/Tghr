@@ -93,6 +93,10 @@ button:hover {
   background-color: #ffcc00;
 }
 
+* {
+  touch-action: manipulation;
+}
+
 /* Модальные окна */
 .modal {
   display: none;
