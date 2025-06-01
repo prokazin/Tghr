@@ -20,6 +20,34 @@ const openLeaderboardBtn = document.getElementById("open-leaderboard");
 const closeLeaderboardBtn = document.getElementById("close-leaderboard");
 const leaderboardList = document.getElementById("leaderboard-list");
 
+const sparklesContainer = document.getElementById("sparkles-container");
+
+function createSparkle() {
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+
+  // Случайное позиционирование в контейнере
+  sparkle.style.top = `${Math.random() * 40}px`;
+  sparkle.style.left = `${Math.random() * 40}px`;
+
+  sparklesContainer.appendChild(sparkle);
+
+  // Удаляем искру после анимации
+  sparkle.addEventListener("animationend", () => {
+    sparkle.remove();
+  });
+}
+
+wand.addEventListener("click", () => {
+  galleons += multiplier;
+  updateCounter();
+
+  // Создаём несколько искр
+  for (let i = 0; i < 5; i++) {
+    createSparkle();
+  }
+});
+
 // Демонстрационные данные лидеров
 const leaderboardData = [
   { name: "Гарри", score: 1200 },
