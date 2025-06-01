@@ -33,59 +33,63 @@ h1#title {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;  /* центр по горизонтали */
-  padding-top: 100px; /* чтобы не перекрыть заголовок */
+  justify-content: space-between; /* Чтобы распределить содержимое сверху и снизу */
+  align-items: center;
+  padding: 80px 20px 40px 20px; /* сверху чтобы не перекрывал заголовок */
   box-sizing: border-box;
   position: relative;
 }
 
+/* Счётчик — по центру и чуть выше палочки */
 #counter {
   font-size: 9vw;
-  margin-bottom: 10px;  /* чуть больше отступ */
-  text-shadow: 2px 2px 4px #000;
+  margin: 0 0 15px 0; /* Отступ снизу до палочки */
   width: 100%;
   text-align: center;
+  text-shadow: 2px 2px 4px #000;
+  flex-shrink: 0;
 }
 
+/* Палочка — центр и размер */
 #wand {
-  display: block; /* сделать блочным элементом */
+  display: block;
   width: 40vw;
   max-width: 300px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin: 0 auto 30px auto; /* сверху 0, снизу 30px, по горизонтали auto для центра */
+  margin: 0 auto 30px auto; /* снизу отступ */
   z-index: 5;
+  flex-shrink: 0;
 }
 
 #wand:active {
   transform: scale(0.95);
 }
-/* Кнопки "Улучшения" и "Лидеры" — увеличены и подняты выше */
+
+/* Кнопки - внизу, большие */
 .buttons {
-  position: absolute;
-  bottom: 80px; /* подняты выше от нижнего края */
   display: flex;
   justify-content: center;
-  gap: 5vw;
-  flex-wrap: wrap;
+  gap: 20px;
+  flex-wrap: nowrap;
   width: 100%;
-  padding: 0 5vw;
-  box-sizing: border-box;
-  z-index: 10;
+  max-width: 600px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
 button {
-  font-size: 4vw;
-  padding: 3vw 6vw;
+  font-size: 1.8em;
+  padding: 15px 30px;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   background-color: #ffd700;
   color: black;
   cursor: pointer;
   transition: background 0.3s ease;
-  box-shadow: 0 0 10px #ffd700;
+  box-shadow: 0 0 15px #ffd700;
+  flex-grow: 1;
 }
 
 button:hover {
@@ -143,18 +147,41 @@ button:hover {
   h1#title {
     font-size: 3em;
   }
+  
   #counter {
     font-size: 12vw;
   }
+  
   #wand {
     width: 60vw;
+    max-width: 250px;
+    margin-bottom: 20px;
   }
+  
   button {
-    font-size: 5vw;
-    padding: 4vw 8vw;
+    font-size: 1.4em;
+    padding: 12px 20px;
+    border-radius: 12px;
   }
+
   .buttons {
-    gap: 7vw;
-    bottom: 70px;
+    gap: 15px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 350px) {
+  #counter {
+    font-size: 14vw;
+  }
+  
+  #wand {
+    width: 80vw;
+    max-width: 220px;
+  }
+  
+  button {
+    font-size: 1.1em;
+    padding: 10px 15px;
   }
 }
