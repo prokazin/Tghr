@@ -57,8 +57,13 @@ h1#title {
   display: block;
 }
 
-#wand:active {
-  transform: scale(0.95);
+#wand {
+  transition: transform 0.1s ease;
+  /* остальные стили уже есть */
+}
+
+#wand.pressed {
+  transform: scale(0.9);
 }
 
 /* Кнопки — внизу, большие */
