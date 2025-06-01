@@ -16,9 +16,9 @@ html, body {
 /* Заголовок "ХОГВАРТС" */
 h1#title {
   position: absolute;
-  top: 10px;
+  top: 8px;
   width: 100%;
-  font-size: 4em;
+  font-size: 2.5em;
   margin: 0;
   padding: 10px 0;
   text-shadow: 3px 3px 6px #000;
@@ -40,8 +40,8 @@ h1#title {
 
 /* Счётчик — увеличенный и с отступом снизу */
 #counter {
-  font-size: 2.5em;
-  margin-bottom: 10px;
+  font-size: 2em;
+  margin-bottom: 7px;
   text-shadow: 1px 1px 3px #000;
   width: 100%;
   text-align: center;
@@ -49,7 +49,7 @@ h1#title {
 
 /* Палочка — центрированная, увеличена */
 #wand {
-  width: 380px;
+  width: 320px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -79,7 +79,7 @@ h1#title {
 
 button {
   font-size: 2em;
-  padding: 10px 55px;
+  padding: 5px 30px;
   border: none;
   border-radius: 12px;
   background-color: #ffd700;
