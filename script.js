@@ -45,10 +45,15 @@ function updateWandLevelClass() {
     "wand-level-2",
     "wand-level-3",
     "wand-level-4",
-    "wand-level-5"
+    "wand-level-5",
+    "wand-level-10",
+    "wand-level-20"
   );
-  const level = Math.min(multiplier, 5);
-  wand.classList.add(`wand-level-${level}`);
+  const level = Math.min(multiplier, 20);
+  if (level >= 20) wand.classList.add("wand-level-20");
+  else if (level >= 10) wand.classList.add("wand-level-10");
+  else if (level >= 5) wand.classList.add("wand-level-5");
+  else wand.classList.add(`wand-level-${level}`);
 }
 
 // Загрузка прогресса игрока
@@ -107,21 +112,12 @@ wand.addEventListener("click", () => {
 });
 
 // Эффект нажатия на палочку
-wand.addEventListener("mousedown", () => {
-  wand.classList.add("pressed");
-});
-wand.addEventListener("mouseup", () => {
-  wand.classList.remove("pressed");
-});
-wand.addEventListener("mouseleave", () => {
-  wand.classList.remove("pressed");
-});
-wand.addEventListener("touchstart", () => {
-  wand.classList.add("pressed");
-});
-wand.addEventListener("touchend", () => {
-  wand.classList.remove("pressed");
-});
+["mousedown", "touchstart"].forEach(evt =>
+  wand.addEventListener(evt, () => wand.classList.add("pressed"))
+);
+["mouseup", "mouseleave", "touchend", "touchcancel"].forEach(evt =>
+  wand.addEventListener(evt, () => wand.classList.remove("pressed"))
+);
 
 // Улучшение
 upgradeBtn.addEventListener("click", () => {
@@ -148,7 +144,7 @@ closeLeaderboardBtn.onclick = () => {
   leaderboardModal.style.display = "none";
 };
 
-// Закрытие по фону
+// Закрытие по клику вне модального окна
 window.onclick = (event) => {
   if (event.target === modal) modal.style.display = "none";
   if (event.target === leaderboardModal) leaderboardModal.style.display = "none";
@@ -166,6 +162,31 @@ function renderLeaderboard() {
     leaderboardList.appendChild(li);
   });
 }
+
+// Адаптивность: уменьшаем палочку и кнопки на узких экранах
+function adaptUI() {
+  if (window.innerWidth <= 480) {
+    wand.style.width = "180px";
+    upgradeBtn.style.fontSize = "1.6em";
+    upgradeBtn.style.padding = "15px 40px";
+    openBtn.style.fontSize = "1.6em";
+    openBtn.style.padding = "15px 40px";
+    openLeaderboardBtn.style.fontSize = "1.6em";
+    openLeaderboardBtn.style.padding = "15px 40px";
+  } else {
+    wand.style.width = "320px";
+    upgradeBtn.style.fontSize = "1.3em";
+    upgradeBtn.style.padding = "3px 15px";
+    openBtn.style.fontSize = "";
+    openBtn.style.padding = "";
+    openLeaderboardBtn.style.fontSize = "";
+    openLeaderboardBtn.style.padding = "";
+  }
+}
+
+// Запускаем адаптивность при загрузке и при изменении окна
+window.addEventListener("resize", adaptUI);
+adaptUI();
 
 // Загружаем прогресс при старте
 loadProgress();
