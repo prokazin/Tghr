@@ -4,7 +4,7 @@ html, body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-   font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', serif;
   /* остальные стили */
   background: url("images/background.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -53,78 +53,82 @@ h1#title {
   width: 320px;
   height: auto;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  margin: 10px auto 40px; /* сверху 10px, снизу 40px, по бокам auto — центрирование */
+  transition: transform 0.2s ease, filter 0.3s ease;
+  margin: 10px auto 40px;
   display: block;
-}
-
-#wand {
-  transition: transform 0.1s ease;
-  /* остальные стили уже есть */
-}
-
-#wand.pressed {
-  transform: scale(0.9);
-}
-
-@keyframes wandGlow {
-  0%, 100% {
-    drop-shadow: 0 0 10px 3px #a67c00, 0 0 20px 5px #ffd700;
-  }
-  50% {
-    drop-shadow: 0 0 20px 6px #ffd700, 0 0 30px 10px #ffea00;
-  }
-}
-
-#wand.pressed {
-  animation: wandGlow 0.8s ease-in-out infinite;
-  cursor: pointer;
-}
-
-/* Общий стиль палочки */
-#wand {
-  cursor: pointer;
-  transition: filter 0.3s ease;
-  /* Можно добавить исходный стиль палочки (размер, позиция) */
 }
 
 /* Эффект при нажатии */
 #wand.pressed {
+  transform: scale(0.9);
+  animation: wandGlow 0.8s ease-in-out infinite;
   filter: brightness(1.3) drop-shadow(0 0 10px #fff);
 }
 
-/* Уровень 5 — легкое свечение */
-.wand-level-5 {
-  filter: drop-shadow(0 0 8px #a29bfe);
-}
-
-/* Уровень 10 — яркое свечение и анимация пульсации */
-.wand-level-10 {
-  filter: drop-shadow(0 0 15px #6c5ce7);
-  animation: wandGlow 2s infinite alternate;
-}
-
+/* Анимация свечения */
 @keyframes wandGlow {
-  from {
-    filter: drop-shadow(0 0 10px #6c5ce7);
+  0%, 100% {
+    filter: drop-shadow(0 0 10px 3px #a67c00) drop-shadow(0 0 20px 5px #ffd700);
   }
-  to {
-    filter: drop-shadow(0 0 20px #6c5ce7);
+  50% {
+    filter: drop-shadow(0 0 20px 6px #ffd700) drop-shadow(0 0 30px 10px #ffea00);
   }
 }
 
-/* Уровень 20 — сильное сияние и более быстрая анимация */
-.wand-level-20 {
-  filter: drop-shadow(0 0 20px #00cec9);
-  animation: wandGlowStrong 1.5s infinite alternate;
+/* Уровни палочки с разным свечением */
+
+/* Уровень 1 — без свечения */
+.wand-level-1 {
+  filter: none;
 }
 
-@keyframes wandGlowStrong {
+/* Уровень 2 — слабое желтое свечение */
+.wand-level-2 {
+  filter: drop-shadow(0 0 5px #ffd700);
+}
+
+/* Уровень 3 — сильнее, с легким пульсирующим эффектом */
+.wand-level-3 {
+  filter: drop-shadow(0 0 8px #ffd700);
+  animation: wandGlowLevel3 2s infinite alternate;
+}
+
+@keyframes wandGlowLevel3 {
   from {
-    filter: drop-shadow(0 0 15px #00cec9);
+    filter: drop-shadow(0 0 5px #ffd700);
   }
   to {
-    filter: drop-shadow(0 0 30px #00cec9);
+    filter: drop-shadow(0 0 12px #ffd700);
+  }
+}
+
+/* Уровень 4 — яркое золотое свечение */
+.wand-level-4 {
+  filter: drop-shadow(0 0 10px #ffec00);
+  animation: wandGlowLevel4 1.5s infinite alternate;
+}
+
+@keyframes wandGlowLevel4 {
+  from {
+    filter: drop-shadow(0 0 8px #ffec00);
+  }
+  to {
+    filter: drop-shadow(0 0 15px #ffec00);
+  }
+}
+
+/* Уровень 5 — очень яркое пурпурное свечение */
+.wand-level-5 {
+  filter: drop-shadow(0 0 15px #a29bfe);
+  animation: wandGlowLevel5 1.2s infinite alternate;
+}
+
+@keyframes wandGlowLevel5 {
+  from {
+    filter: drop-shadow(0 0 10px #a29bfe);
+  }
+  to {
+    filter: drop-shadow(0 0 20px #a29bfe);
   }
 }
 
@@ -210,6 +214,7 @@ button:hover {
   text-align: left;
 }
 
+/* Всплывающее уведомление (toast) */
 .toast {
   position: fixed;
   bottom: 30px;
