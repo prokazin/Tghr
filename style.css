@@ -1,4 +1,4 @@
-/* Общие стили и фон */
+/* Поддержка масштабирования при двойном тапе */
 html, body {
   touch-action: manipulation;
   margin: 0;
@@ -11,7 +11,7 @@ html, body {
   color: white;
   text-align: center;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Заголовок "ХОГВАРТС" */
@@ -19,51 +19,52 @@ h1#title {
   position: absolute;
   top: 10px;
   width: 100%;
-  font-size: 6vw; /* Адаптивный размер */
+  font-size: 4em;
   margin: 0;
   padding: 10px 0;
   text-shadow: 3px 3px 6px #000;
   z-index: 10;
 }
 
-/* Основной контейнер */
+/* Контейнер во весь экран */
 .container {
   background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 80px;
+  padding-top: 100px; /* чтобы не перекрыть заголовок */
   box-sizing: border-box;
+  position: relative;
 }
 
-/* Счётчик галлеонов */
+/* Счётчик галлеонов — увеличен и поднят выше */
 #counter {
-  font-size: 5vw;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 3px #000;
+  font-size: 7vw; /* увеличенный размер */
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px #000;
 }
 
-/* Палочка */
+/* Палочка — увеличена */
 #wand {
   width: 40vw;
   max-width: 300px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 #wand:active {
   transform: scale(0.95);
 }
 
-/* Кнопки улучшений и лидеров */
+/* Кнопки "Улучшения" и "Лидеры" — увеличены и подняты выше */
 .buttons {
   position: absolute;
-  bottom: 30px;
+  bottom: 80px; /* подняты выше от нижнего края */
   display: flex;
   justify-content: center;
   gap: 5vw;
@@ -107,7 +108,7 @@ button:hover {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #ffd700;
-  width: 90%;
+  width: 80%;
   max-width: 400px;
   border-radius: 10px;
   color: #fff;
@@ -135,29 +136,23 @@ button:hover {
   text-align: left;
 }
 
-/* Адаптивность — планшеты и ПК */
-@media (min-width: 768px) {
+/* Адаптивность */
+@media (max-width: 600px) {
   h1#title {
     font-size: 3em;
   }
-
   #counter {
-    font-size: 2em;
+    font-size: 9vw;
   }
-
   #wand {
-    width: 200px;
+    width: 60vw;
   }
-
   button {
-    font-size: 1.2em;
-    padding: 12px 24px;
+    font-size: 5vw;
+    padding: 4vw 8vw;
   }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
+  .buttons {
+    gap: 7vw;
+    bottom: 70px;
   }
 }
