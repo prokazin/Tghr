@@ -148,3 +148,27 @@ button:hover {
   border-bottom: 1px solid #ffd700;
   text-align: left;
 }
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1.2em;
+  box-shadow: 0 0 10px #ffd700;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
