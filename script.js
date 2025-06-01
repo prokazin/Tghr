@@ -20,33 +20,7 @@ const openLeaderboardBtn = document.getElementById("open-leaderboard");
 const closeLeaderboardBtn = document.getElementById("close-leaderboard");
 const leaderboardList = document.getElementById("leaderboard-list");
 
-const sparklesContainer = document.getElementById("sparkles-container");
-
-function createSparkle() {
-  const sparkle = document.createElement("div");
-  sparkle.classList.add("sparkle");
-
-  // Случайное позиционирование в контейнере
-  sparkle.style.top = `${Math.random() * 40}px`;
-  sparkle.style.left = `${Math.random() * 40}px`;
-
-  sparklesContainer.appendChild(sparkle);
-
-  // Удаляем искру после анимации
-  sparkle.addEventListener("animationend", () => {
-    sparkle.remove();
-  });
-}
-
-wand.addEventListener("click", () => {
-  galleons += multiplier;
-  updateCounter();
-
-  // Создаём несколько искр
-  for (let i = 0; i < 5; i++) {
-    createSparkle();
-  }
-});
+const toast = document.getElementById("toast");
 
 // Демонстрационные данные лидеров
 const leaderboardData = [
@@ -55,21 +29,31 @@ const leaderboardData = [
   { name: "Рон", score: 700 },
 ];
 
-// Функция для показа toast-сообщения
+// Функция показа всплывающего уведомления
 function showToast(message) {
-  const toast = document.getElementById("toast");
   toast.textContent = message;
   toast.classList.add("show");
-
   setTimeout(() => {
     toast.classList.remove("show");
   }, 3000);
 }
 
+// Обновление класса палочки по уровню
+function updateWandLevelClass() {
+  wand.classList.remove(
+    "wand-level-1",
+    "wand-level-2",
+    "wand-level-3",
+    "wand-level-4",
+    "wand-level-5"
+  );
+  const level = Math.min(multiplier, 5);
+  wand.classList.add(`wand-level-${level}`);
+}
+
 // Загрузка прогресса игрока
 function loadProgress() {
   if (!tg) {
-    // Если не в Telegram — используем localStorage
     galleons = parseInt(localStorage.getItem("galleons")) || 0;
     multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
     updateCounter();
@@ -113,6 +97,7 @@ function saveProgress() {
 function updateCounter() {
   counter.textContent = `Галлеоны: ${galleons}`;
   saveProgress();
+  updateWandLevelClass();
 }
 
 // Клик по палочке
