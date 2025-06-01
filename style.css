@@ -194,12 +194,12 @@ button:hover {
 
 #sparkles-container {
   position: absolute;
-  top: 50%;      /* Вертикально по центру */
-  right: 10px;   /* Отступ слева или справа — подкорректируй по необходимости */
-  width: 30px;   /* Размер области с искрами */
+  top: 50%;
+  left: 10px; /* Подкорректируй */
+  width: 30px;
   height: 30px;
   pointer-events: none;
-  transform: translateY(-50%); /* Сместить вертикально, чтобы центр был по высоте */
+  transform: translateY(-50%);
   overflow: visible;
 }
 
