@@ -69,10 +69,10 @@ h1#title {
 
 @keyframes wandGlow {
   0%, 100% {
-    box-shadow: 0 0 10px 3px #a67c00, 0 0 20px 5px #ffd700;
+    drop-shadow: 0 0 10px 3px #a67c00, 0 0 20px 5px #ffd700;
   }
   50% {
-    box-shadow: 0 0 20px 6px #ffd700, 0 0 30px 10px #ffea00;
+    drop-shadow: 0 0 20px 6px #ffd700, 0 0 30px 10px #ffea00;
   }
 }
 
